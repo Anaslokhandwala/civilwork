@@ -33,10 +33,38 @@ class SubmitTenderViewController: UIViewController {
     
     @IBOutlet weak var neCoorRenTF: UITextField!
     
+    var detailsOfContr:[String:Any] = [:]
+    var isEditingEn = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if !isEditingEn{
+            disableUnableTextfield(textfieldUpdate: isEditingEn)
+            tenderTitleTF.text = detailsOfContr["tenderTitle"] as? String ?? ""
+            tenderDiscriptionTF.text = detailsOfContr["tenderDescription"] as? String ?? ""
+            longitudeTF.text = detailsOfContr["longitude"] as? String ?? ""
+            lattitudeTF.text = detailsOfContr["latitude"] as? String ?? ""
+            diningroomTF.text = detailsOfContr["diningRoom"] as? String ?? ""
+            outdoorSeatingTF.text = detailsOfContr["outdoorSeating"] as? String ?? ""
+            gameroomTF.text = detailsOfContr["gameRoom"] as? String ?? ""
+            guestroomTF.text = detailsOfContr["guestRoom"] as? String ?? ""
+            studyTF.text = detailsOfContr["study"] as? String ?? ""
+            gymTF.text = detailsOfContr["gym"] as? String ?? ""
+            bathroomTF.text = detailsOfContr["bathroom"] as? String ?? ""
+            bedroomTF.text = detailsOfContr["bedroom"] as? String ?? ""
+            kitchenTF.text = detailsOfContr["kitchen"] as? String ?? ""
+            hallTF.text = detailsOfContr["hall"] as? String ?? ""
+            addressTF.text = detailsOfContr["address"] as? String ?? ""
+            talukaTF.text = detailsOfContr["taluka"] as? String ?? ""
+            numberTF.text = detailsOfContr["number"] as? String ?? ""
+            emailTF.text = detailsOfContr["email"] as? String ?? ""
+            nameTF.text = detailsOfContr["name"] as? String ?? ""
+            neCoorRenTF.text = detailsOfContr["neCoorRenTF"] as? String ?? ""
+        }else{
+            disableUnableTextfield(textfieldUpdate: isEditingEn)
+        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -147,5 +175,28 @@ class SubmitTenderViewController: UIViewController {
     
     @IBAction func backButtonAction(_ sender: Any) {
     navigationController?.popViewController(animated: true)
+    }
+    
+    func disableUnableTextfield (textfieldUpdate:Bool) {
+        tenderTitleTF.isEnabled = textfieldUpdate
+        tenderDiscriptionTF.isEditable = textfieldUpdate
+        longitudeTF.isEnabled = textfieldUpdate
+        lattitudeTF.isEnabled = textfieldUpdate
+        diningroomTF.isEnabled = textfieldUpdate
+        outdoorSeatingTF.isEnabled = textfieldUpdate
+        gameroomTF.isEnabled = textfieldUpdate
+        guestroomTF.isEnabled = textfieldUpdate
+        studyTF.isEnabled = textfieldUpdate
+        gymTF.isEnabled = textfieldUpdate
+        bathroomTF.isEnabled = textfieldUpdate
+        bedroomTF.isEnabled = textfieldUpdate
+        kitchenTF.isEnabled = textfieldUpdate
+        hallTF.isEnabled = textfieldUpdate
+        addressTF.isEnabled = textfieldUpdate
+        talukaTF.isEnabled = textfieldUpdate
+        numberTF.isEnabled = textfieldUpdate
+        emailTF.isEnabled = textfieldUpdate
+        nameTF.isEnabled = textfieldUpdate
+        neCoorRenTF.isEnabled = textfieldUpdate
     }
 }

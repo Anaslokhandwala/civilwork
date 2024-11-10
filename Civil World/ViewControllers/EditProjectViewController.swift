@@ -22,6 +22,7 @@ class EditProjectViewController: UIViewController, UITextFieldDelegate,PHPickerV
     @IBOutlet weak var talukaTF: UITextField!
     @IBOutlet weak var zipCadeTF: UITextField!
     @IBOutlet weak var txfView: UIView!
+    @IBOutlet weak var btnAddPhotos: UIButton!
     @IBOutlet weak var photoView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -31,6 +32,7 @@ class EditProjectViewController: UIViewController, UITextFieldDelegate,PHPickerV
     var projectData:[String:Any] = [:]
     var oldTitleText = ""
     var oldcustomID = ""
+  
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -79,15 +81,27 @@ class EditProjectViewController: UIViewController, UITextFieldDelegate,PHPickerV
                     imageArr.append(image)
                 }
             }
+            collectionView.reloadData()
         }
         
-        collectionView.reloadData()
+        
+        
+        if imageArr.count != 0 {
+            btnAddPhotos.isHidden = true
+            imageArr.append(UIImage(named: "imagePicker")!)
+        }
+        else {
+            btnAddPhotos.isHidden = false
+        }
+        
+        collectionView.layer.borderWidth = 1
         
         
     }
     
     @IBAction func btnAddPhotos(_ sender: Any) {
         
+        imageArr.removeAll()
         var configuration = PHPickerConfiguration()
         configuration.selectionLimit = 10
         configuration.filter = .images
@@ -288,7 +302,14 @@ extension EditProjectViewController : UICollectionViewDataSource,UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosPickerCell", for: indexPath) as! PhotosPickerCell
-        cell.imgPick.image = imageArr[indexPath.item]
+        
+        cell.imgPick.layer.borderWidth = 1
+        
+        if let image = imageArr[indexPath.row] as? UIImage {
+            cell.imageii = image
+
+        }
+        
         return cell
     }
     
@@ -307,6 +328,21 @@ extension EditProjectViewController : UICollectionViewDataSource,UICollectionVie
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.row == imageArr.count - 1 {
+            
+            imageArr.removeAll()
+            var configuration = PHPickerConfiguration()
+            configuration.selectionLimit = 10
+            configuration.filter = .images
+            
+            let picker = PHPickerViewController(configuration: configuration)
+            picker.delegate = self
+            present(picker, animated: true, completion: nil)
+        }
     }
     
     

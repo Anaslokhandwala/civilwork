@@ -19,13 +19,25 @@ class RightSideMenuViewController: UIViewController {
     @IBOutlet weak var userNameLbl: UILabel!
     
     @IBOutlet weak var userEmailLbl: UILabel!
+    @IBOutlet weak var profileImg: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        dataBinding()
+        
+    }
+    
+    func dataBinding() {
+        
         userNameLbl.text = profileData["perSonnelName"] as? String ?? ""
         userEmailLbl.text = profileData["email"] as? String ?? ""
         
+        if let imageData = profileData["profileImage"] as? Data {
+            if let image = UIImage(data: imageData) {
+                profileImg.image = image
+            }
+        }
     }
 }
 
@@ -70,6 +82,7 @@ extension RightSideMenuViewController : UITableViewDelegate, UITableViewDataSour
         }
         if indexPath.row == 4 {
             let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SubmitTenderViewController") as! SubmitTenderViewController
+            controller.isEditingEn = true
             self.navigationController?.pushViewController(controller, animated: true)
         }
         if indexPath.row == 5 {
@@ -82,6 +95,8 @@ extension RightSideMenuViewController : UITableViewDelegate, UITableViewDataSour
         }
         if indexPath.row == 7 {
             let controller = UIStoryboard(name: "Main2", bundle: nil).instantiateViewController(withIdentifier: "ViewProfileViewController") as! ViewProfileViewController
+            controller.isView = false
+            viewForCell = false
             self.navigationController?.pushViewController(controller, animated: true)
         }
         if indexPath.row == 8 {

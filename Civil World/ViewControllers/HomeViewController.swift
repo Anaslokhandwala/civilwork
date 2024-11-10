@@ -8,7 +8,9 @@
 import UIKit
 import FirebaseFirestoreInternal
 
-class HomeViewController: UIViewController {
+var viewForCell = false
+
+class HomeViewController: UIViewController, HomeListingCellDelegate {
    
 //MARK: OUTLETS
     @IBOutlet weak var tableView: UITableView!
@@ -89,6 +91,25 @@ class HomeViewController: UIViewController {
          }
          isSideMenuOpen = false
      }
+    
+    func didSelectItem(at indexPath: IndexPath, projTitle: String, proSts: String, projDet: String, images: [UIImage]?) {
+        guard let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserDetailViewController") as? UserDetailViewController else {
+            print("Could not instantiate UserDetailViewController")
+            return
+        }
+
+        controller.userDetail = projTitle
+        controller.statusBtn = proSts
+        controller.descriptiontxt = projDet
+        
+        if let images = images {
+            controller.arrImage = images
+        }
+
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
  }
     
 
@@ -98,6 +119,7 @@ extension HomeViewController{
     @IBAction func sideMenuAction(_ sender: UIButton) {
         toggleSideMenu()
     }
+    
 }
 
 //MARK: TableView Delegate&Datasource
@@ -108,7 +130,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeListingCell") as! HomeListingCell
-         
+        cell.delegate = self
         let vari = userData[indexPath.row]["images"] as? [Data] ?? []
         var imageArr = [UIImage]()
         if vari.count > 0 {
@@ -124,7 +146,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 //        print(userData[indexPath.row]["status"])
         cell.statusTxtLbl.text = userData[indexPath.row]["status"] as? String ?? ""
         cell.projectDetails.text = userData[indexPath.row]["projecttitle"] as? String ?? ""
-
+        
+        if userData[indexPath.row]["profileImage"] as? Data != nil {
+            var image = UIImage(data: userData[indexPath.row]["profileImage"] as! Data)
+            cell.profileImg.image = image
+        }
+        cell.projDet = userData[indexPath.row]["projectdetails"] as? String ?? ""
+        cell.proSts = userData[indexPath.row]["status"] as? String ?? ""
+        cell.projTitle = userData[indexPath.row]["projecttitle"] as? String ?? ""
+        cell.images = imageArr
+        
+        
         return cell
     }
     
@@ -134,23 +166,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
-        controller.userDetail = userData[indexPath.row]["projecttitle"] as? String ?? ""
-        controller.statusBtn = userData[indexPath.row]["status"] as? String ?? ""
-        
-        controller.descriptiontxt = userData[indexPath.row]["projectdetails"] as? String ?? ""
-        let vari = userData[indexPath.row]["images"] as? [Data] ?? []
-        var imageArr = [UIImage]()
-        if vari.count > 0 {
-            for i in vari {
-                if let image = UIImage(data: i) {
-                    imageArr.append(image)
-                }
-            }
-        }
-        controller.arrImage = imageArr
-        
-        
+        let controller = UIStoryboard(name: "Main2", bundle: nil).instantiateViewController(withIdentifier: "ViewProfileViewController") as! ViewProfileViewController
+        controller.isView = true
+        viewForCell = true
         self.navigationController?.pushViewController(controller, animated: true)
     }
     

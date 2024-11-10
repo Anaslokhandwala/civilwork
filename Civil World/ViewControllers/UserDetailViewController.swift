@@ -46,6 +46,7 @@ class UserDetailViewController: UIViewController {
         descriptionTextView.text = descriptiontxt
         phoneNoLbl.text = profileData["mobileNumber"] as? String ?? ""
         contactnameLbl.text = profileData["perSonnelName"] as? String ?? ""
+        contactProfileImage.image = userProfileImage
     }
     @IBAction func requestInformationAction(_ sender: Any) {
         

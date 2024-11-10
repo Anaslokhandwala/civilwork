@@ -41,6 +41,7 @@ extension LogInViewController{
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 print("Error signing in: \(error.localizedDescription)")
+                self.showAlert(title: "Error signing in", message: "\(error.localizedDescription)", viewController: self)
             } else {
                     print("User signed in successfully")
                     userEmail = email
@@ -94,6 +95,15 @@ extension LogInViewController{
             self.navigationController?.pushViewController(controller, animated: true)
        
        
+    }
+    
+    func showAlert(title: String, message: String, viewController: UIViewController) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        
+        viewController.present(alert, animated: true, completion: nil)
     }
     
 

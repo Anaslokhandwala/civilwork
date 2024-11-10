@@ -54,6 +54,15 @@ class LaunchViewController: UIViewController {
                                 
                                 profileData = data ?? [:]
 
+                                if let imageData = profileData["profileImage"] as? Data {
+                                    if let image = UIImage(data: imageData) {
+                                        userProfileImage = image
+                                    }else{
+                                        userProfileImage = UIImage(named: "Mask Group 7")
+                                    }
+                                }else{
+                                    userProfileImage = UIImage(named: "Mask Group 7")
+                                }
                                 
                                 let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
                                 self.navigationController?.pushViewController(controller, animated: true)

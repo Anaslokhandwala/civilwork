@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestoreInternal
+import FirebaseFirestore
 
 class SignUpViewController: UIViewController {
     
@@ -47,6 +48,7 @@ extension SignUpViewController {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 print("Error signing up: \(error.localizedDescription)")
+                self.showAlert(title: "Error signing up", message: "\(error.localizedDescription)", viewController: self)
             } else {
                 print("User signed up successfully")
                 
@@ -76,5 +78,14 @@ extension SignUpViewController {
     
     @IBAction func checkButtonAction(_ sender: Any) {
         
+    }
+    
+    func showAlert(title: String, message: String, viewController: UIViewController) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        
+        viewController.present(alert, animated: true, completion: nil)
     }
 }

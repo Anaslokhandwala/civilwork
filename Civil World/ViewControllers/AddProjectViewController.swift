@@ -111,7 +111,7 @@ class AddProjectViewController: UIViewController, UITextFieldDelegate,PHPickerVi
                     imageData.append(self.compressImageToTargetSize(image: image, targetSizeInKB: 50)!)
                 }
                 
-                let userData: [String: Any] =
+                var userData: [String: Any] =
                 ["projecttitle": titleText,
                  "projectdetails": detailText,
                  "address": address,
@@ -122,6 +122,11 @@ class AddProjectViewController: UIViewController, UITextFieldDelegate,PHPickerVi
                  "status":selectedStatus,
                  "images":imageData
                 ]
+                
+                if (userProfileImage != nil){
+                    var img = self.compressImageToTargetSize(image: userProfileImage!, targetSizeInKB: 50)!
+                    userData["profileImage"] = img
+                }
                 
                 db.collection("users").document(titleText).setData(userData) { error in
                     if let error = error {

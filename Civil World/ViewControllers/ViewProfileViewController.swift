@@ -20,10 +20,18 @@ class ViewProfileViewController: UIViewController {
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var btnEditProfile: UIButton!
     
+    var isView = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        if isView {
+            btnEditProfile.isHidden = true
+        }else{
+            btnEditProfile.isHidden = false
+        }
+        
+        tableView.reloadData()
 
       
     }
@@ -33,7 +41,11 @@ class ViewProfileViewController: UIViewController {
         lblCompanyName.text = profileData["comPanyName"] as? String ?? ""
         lblOwnerName.text = profileData["perSonnelName"] as? String ?? ""
         lblWorkingField.text = profileData["specialities"] as? String ?? ""
-        
+        if let imageData = profileData["profileImage"] as? Data {
+            if let image = UIImage(data: imageData) {
+                imgProfile.image = image
+            }
+        }
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -148,7 +160,7 @@ extension ViewProfileViewController : UITableViewDelegate,UITableViewDataSource 
             imageArr = UIImage(data: vari[0])
             cell.imgProject.image = imageArr
         }
-        
+        cell.isView = isView
         cell.lblProjectName.text = userprojectData[indexPath.row]["projecttitle"] as? String ?? ""
         cell.lblStatus.text = userprojectData[indexPath.row]["status"] as? String ?? ""
 

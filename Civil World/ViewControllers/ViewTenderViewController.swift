@@ -100,5 +100,13 @@ extension ViewTenderViewController:UITableViewDelegate,UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        SubmitTenderViewController
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SubmitTenderViewController") as! SubmitTenderViewController
+        controller.detailsOfContr = tenderDat[indexPath.row]
+        controller.isEditingEn = false
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
     
 }

@@ -16,7 +16,7 @@ class postCell: UITableViewCell {
     @IBOutlet weak var deleteBtn: UIButton!
     
     var image:UIImage?
-    
+    var isView = false
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +25,15 @@ class postCell: UITableViewCell {
         
         self.deleteBtn.layer.cornerRadius = 10
         self.deleteBtn.layer.borderWidth = 1
+        
+        if viewForCell {
+            editBtn.isHidden = true
+            deleteBtn.isHidden = true
+        }else{
+            editBtn.isHidden = false
+            deleteBtn.isHidden = false
+        }
+
         
 //        if let img = image {
 //            imgProject.image = img

@@ -22,6 +22,7 @@
 		1E3A8A532CBAC9A700CE7D42 /* VUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3A8A522CBAC9A700CE7D42 /* VUpdateViewController.swift */; };
 		1E3A8A552CBB165C00CE7D42 /* LeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3A8A542CBB165C00CE7D42 /* LeadsViewController.swift */; };
 		1E3A8A572CBB22A500CE7D42 /* ViewTenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3A8A562CBB22A500CE7D42 /* ViewTenderViewController.swift */; };
+		1E44B6D12CE0C10E002FADC3 /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E44B6D02CE0C10E002FADC3 /* FavouriteViewController.swift */; };
 		1E74A4D82CBBB6FB0040CDFC /* EditProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E74A4D72CBBB6FB0040CDFC /* EditProjectViewController.swift */; };
 		21D0D08D6748CE49A5553613 /* Pods_Civil_World.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69221D94D0B3DF59873AD454 /* Pods_Civil_World.framework */; };
 		522F8C2F2C4AB07100C4B458 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 522F8C2E2C4AB07100C4B458 /* Main2.storyboard */; };
@@ -96,6 +97,7 @@
 		1E3A8A522CBAC9A700CE7D42 /* VUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VUpdateViewController.swift; sourceTree = "<group>"; };
 		1E3A8A542CBB165C00CE7D42 /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		1E3A8A562CBB22A500CE7D42 /* ViewTenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTenderViewController.swift; sourceTree = "<group>"; };
+		1E44B6D02CE0C10E002FADC3 /* FavouriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewController.swift; sourceTree = "<group>"; };
 		1E74A4D72CBBB6FB0040CDFC /* EditProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProjectViewController.swift; sourceTree = "<group>"; };
 		522F8C2E2C4AB07100C4B458 /* Main2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main2.storyboard; sourceTree = "<group>"; };
 		522F8C332C4ABF7600C4B458 /* ViewProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewProfileViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				1E3A8A542CBB165C00CE7D42 /* LeadsViewController.swift */,
 				1E3A8A562CBB22A500CE7D42 /* ViewTenderViewController.swift */,
 				1E74A4D72CBBB6FB0040CDFC /* EditProjectViewController.swift */,
+				1E44B6D02CE0C10E002FADC3 /* FavouriteViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				1E3A8A552CBB165C00CE7D42 /* LeadsViewController.swift in Sources */,
 				522F8C342C4ABF7600C4B458 /* ViewProfileViewController.swift in Sources */,
 				523730A72C37BC00001E48EB /* AddProjectViewController.swift in Sources */,
+				1E44B6D12CE0C10E002FADC3 /* FavouriteViewController.swift in Sources */,
 				185711302C26BA3E001CBFA8 /* HomeViewController.swift in Sources */,
 				528F35052C19CB40000A5CB3 /* AppDelegate.swift in Sources */,
 				523730AA2C3BB5F9001E48EB /* PhotosPickerCell.swift in Sources */,
@@ -671,25 +675,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X9Q7S44AX7;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Civil World/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "application use photo library for puting adds";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.civil.world;
+				PRODUCT_BUNDLE_IDENTIFIER = com.civil.world1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -708,11 +715,12 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Civil World/Info.plist";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "application use photo library for puting adds";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -734,7 +742,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 64B888GC52;
+				DEVELOPMENT_TEAM = X9Q7S44AX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MARKETING_VERSION = 1.0;
@@ -773,7 +781,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 64B888GC52;
+				DEVELOPMENT_TEAM = X9Q7S44AX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "test.Civil-WorldUITests";
@@ -791,7 +799,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 64B888GC52;
+				DEVELOPMENT_TEAM = X9Q7S44AX7;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "test.Civil-WorldUITests";
